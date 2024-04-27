@@ -3,7 +3,7 @@ import Header from "@/components/header";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center h-screen">
+    <main className="flex flex-col items-center justify-center h-screen bg-custom-bg">
       <Header />
       <SearchBox />
     </main>
