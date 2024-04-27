@@ -12,44 +12,44 @@ export default function Search(){
             <SearchBox />
         </div>
     </div> 
-        <p className="ml-20">Results for ...</p>
+        <p className="ml-20 mb-5">Results for ...</p>
   
         <div className="ml-20 mr-20">
                 <div className="flex justify-center grid grid-cols-2 md:grid-cols-3 gap-8">
-                    <div className="w-30 h-20 bg-blue-300 flex justify-center items-center rounded-lg">
+                    <div className="w-30 h-32 bg-blue-300 flex justify-center items-center rounded-lg">
                         <span className="text-white">g1</span>
                     </div>
-                    <div className="w-30 h-20 bg-blue-300 flex justify-center items-center rounded-lg">
+                    <div className="w-30 h-32 bg-blue-300 flex justify-center items-center rounded-lg">
                         <span className="text-white">g2</span>
                     </div>
-                    <div className="w-30 h-20 bg-blue-300 flex justify-center items-center rounded-lg">
+                    <div className="w-30 h-32 bg-blue-300 flex justify-center items-center rounded-lg">
                         <span className="text-white">g3</span>
                     </div>
-                    <div className="w-30 h-20 bg-blue-300 flex justify-center items-center rounded-lg">
+                    <div className="w-30 h-32 bg-blue-300 flex justify-center items-center rounded-lg">
                         <span className="text-white">g3</span>
                     </div>
-                    <div className="w-30 h-20 bg-blue-300 flex justify-center items-center rounded-lg">
+                    <div className="w-30 h-32 bg-blue-300 flex justify-center items-center rounded-lg">
                         <span className="text-white">g3</span>
                     </div>
-                    <div className="w-30 h-20 bg-blue-300 flex justify-center items-center rounded-lg">
+                    <div className="w-30 h-32 bg-blue-300 flex justify-center items-center rounded-lg">
                         <span className="text-white">g3</span>
                     </div>
-                    <div className="w-30 h-20 bg-blue-300 flex justify-center items-center rounded-lg">
+                    <div className="w-30 h-32 bg-blue-300 flex justify-center items-center rounded-lg">
                         <span className="text-white">g3</span>
                     </div>
-                    <div className="w-30 h-20 bg-blue-300 flex justify-center items-center rounded-lg">
+                    <div className="w-30 h-32 bg-blue-300 flex justify-center items-center rounded-lg">
                         <span className="text-white">g3</span>
                     </div>
-                    <div className="w-30 h-20 bg-blue-300 flex justify-center items-center rounded-lg">
+                    <div className="w-30 h-32 bg-blue-300 flex justify-center items-center rounded-lg">
                         <span className="text-white">g3</span>
                     </div>
-                    <div className="w-30 h-20 bg-blue-300 flex justify-center items-center rounded-lg">
+                    <div className="w-30 h-32 bg-blue-300 flex justify-center items-center rounded-lg">
                         <span className="text-white">g3</span>
                     </div>
-                    <div className="w-30 h-20 bg-blue-300 flex justify-center items-center rounded-lg">
+                    <div className="w-30 h-32 bg-blue-300 flex justify-center items-center rounded-lg">
                         <span className="text-white">g3</span>
                     </div>
-                    <div className="w-30 h-20 bg-blue-300 flex justify-center items-center rounded-lg">
+                    <div className="w-30 h-32 bg-blue-300 flex justify-center items-center rounded-lg">
                         <span className="text-white">g3</span>
                     </div>
 
