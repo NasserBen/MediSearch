@@ -9,9 +9,24 @@ export default function SearchBox({ onSearch }) {
     setQuery(event.target.value);
   };
 
-  const handleSearch = (event) => {
-    event.preventDefault();  // Prevent the default form submission behavior
-    onSearch(query);
+  const handleSearch = async () => {
+    try {
+      const apiUrl = `https://api.fda.gov/drug/label.json?search=indications_and_usage:"${query}"&limit=1`;
+
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        if (response.status === 404) {
+          setDrugData(`No Results Found found for ${query}!`);
+        } else {
+          throw new Error("Failed to fetch drug information");
+        }
+      } else {
+        const drugInfo = await response.json();
+        setDrugData(drugInfo);
+      }
+    } catch (error) {
+      console.error("Error fetching drug information:", error.message);
+    }
   };
 
   return (
@@ -30,11 +45,6 @@ export default function SearchBox({ onSearch }) {
           value={query}
           onChange={handleInputChange}  // Handling input change
         />
-        {/* <button
-          type="submit"
-          class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-          Search
-        </button> */}
       </div>
     </form>
   );
