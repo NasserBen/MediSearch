@@ -13,7 +13,7 @@ export default function Header() {
         alt="logo"
         width={70}
         height={70}
-        className="mb-10 ml-5"
+        className="mb-12 ml-5"
       />
     </div>
 
