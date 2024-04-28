@@ -11,25 +11,30 @@ export default function SearchBox({ setDrugData, setKeyword }) {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    setKeyword(query);
-    try {
-      const apiUrl = `https://api.fda.gov/drug/label.json?search=openfda.substance_name:"${query}" OR openfda.brand_name:"${query}"&limit=100`;
-
-      const response = await fetch(apiUrl);
-      if (!response.ok) {
-        if (response.status === 404) {
-          setDrugData(`No Results Found found for ${query}!`);
+    const trimmedQuery = query.trim();
+    
+    if (trimmedQuery !== "") {
+      setKeyword(trimmedQuery);
+      try {
+        const apiUrl = `https://api.fda.gov/drug/label.json?search=openfda.substance_name:"${trimmedQuery}" OR openfda.brand_name:"${trimmedQuery}"&limit=100`;
+  
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          if (response.status === 404) {
+            setDrugData(`No Results Found found for ${trimmedQuery}!`);
+          } else {
+            throw new Error("Failed to fetch drug information!");
+          }
         } else {
-          throw new Error("Failed to fetch drug information!");
+          const drugInfo = await response.json();
+          setDrugData(drugInfo);
         }
-      } else {
-        const drugInfo = await response.json();
-        setDrugData(drugInfo);
+      } catch (error) {
+        console.error("Error fetching drug information:", error.message);
       }
-    } catch (error) {
-      console.error("Error fetching drug information:", error.message);
     }
   };
+  
 
   return (
     <form onSubmit={handleSearch} className="max-w-md mx-auto">
