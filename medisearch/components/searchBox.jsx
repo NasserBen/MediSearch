@@ -19,7 +19,7 @@ export default function SearchBox({ setDrugData }) {
         if (response.status === 404) {
           setDrugData(`No Results Found found for ${query}!`);
         } else {
-          throw new Error("Failed to fetch drug information");
+          throw new Error("Failed to fetch drug information!");
         }
       } else {
         const drugInfo = await response.json();
@@ -39,14 +39,14 @@ export default function SearchBox({ setDrugData }) {
         Search
       </label>
       <div className="relative">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <IoSearchSharp className="w-5 h-5 text-gray-900 dark:text-gray-400" />{" "}
+        <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+          <IoSearchSharp className="w-5 h-5 text-gray-400" />{" "}
         </div>
         <input
           type="search"
           id="default-search"
-          className="block w-full px-20 py-3 text-sm text-black-500 rounded-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 shadow-lg"
-          placeholder="Search.."
+          className="px-16 py-3 text-sm text-black-500 rounded-full bg-gray-50 shadow-lg"
+          placeholder="Search..."
           required
           value={query}
           onChange={handleInputChange}

@@ -31,12 +31,12 @@ export default function Results({ data }) {
 
   return (
     <div>
-      <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="mt-8 mb-20 grid grid-cols-2 md:grid-cols-3 gap-8">
         {data.results.slice(0, displayMore).map((result, index) => (
           <div
             key={index}
             onClick={() => openItemPage(result)}
-            className="w-full h-36 bg-blue-200 flex rounded-lg border border-transparent hover:border-blue-500 border-2 hover:opacity-80 cursor-pointer"
+            className="w-full h-36 bg-blue-200 flex rounded-lg border-transparent hover:border-blue-500 border-2 hover:opacity-80 cursor-pointer"
           >
             <div className="flex flex-col flex-start">
               <span className="pl-5 pt-2 pb-2 text-black font-bold text-xl">
@@ -47,7 +47,6 @@ export default function Results({ data }) {
               </span>
               <span className="px-5 text-sm">
                 {result.indications_and_usage?.[0]
-                  ?.replace(/•/g, "")
                   .substring(0, 170)}
                 {result.indications_and_usage?.[0]?.length > 170 ? "..." : ""}
               </span>
