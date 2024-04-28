@@ -8,10 +8,19 @@ import Results from "@/components/results";
 export default function Home() {
   const [drugData, setDrugData] = useState(null);
   return (
-    <main className="flex flex-col items-center justify-center h-screen bg-custom-bg">
-      <Header />
-      <SearchBox setDrugData={setDrugData} />
-      {<Results data={drugData} />}
-    </main>
+      <main className="bg-custom-bg">
+            <div className="flex flex-start ">
+                <div className="mt-10 ml-20 mr-20 flex flex-start">
+                    <Header />
+                </div>
+                <div className="mt-10 mr-10 ml-40">
+                    <SearchBox setDrugData={setDrugData} />
+                </div>
+            </div> 
+            <p className="ml-20 mb-5">Results for ... WIP</p>
+            <div className="ml-20 mr-20">
+                {<Results data={drugData} />}
+            </div>
+        </main>
   );
 }
