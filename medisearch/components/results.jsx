@@ -77,9 +77,9 @@ export default function Results({ data }) {
             usage: selectedItem.indications_and_usage?.[0] || "",
             directions: selectedItem.dosage_and_administration?.[0] || "",
             genWarnings:
+              selectedItem.boxed_warning?.[0] ||
               selectedItem.warnings?.[0] ||
               selectedItem.warnings_and_cautions?.[0] ||
-              selectedItem.boxed_warning?.[0] ||
               "",
             allergyWarnings:
               selectedItem.do_not_use?.[0] ||

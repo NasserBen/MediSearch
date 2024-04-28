@@ -56,7 +56,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
           </button>
         </div>
         <br />
-        <div className="h-[700px] overflow-y-auto">
+        <div className="h-[80vh] sm:h-[700px] overflow-y-auto">
           <div className="flex items-center text-xl md:text-2xl font-bold">
             Usage
             <FaRegCheckCircle color="green" size={27} className="ml-2" />
