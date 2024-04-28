@@ -39,7 +39,7 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="ml-2 md:ml-20 mt-10 mb-5 text-gray-600"
           >
-            Results for "{keyword}" (
+            Results for &ldquo;{keyword}&rdquo; (
             {drugData && drugData.results ? drugData.results.length : 0}).
           </motion.p>
           <div className="mx-2 md:mx-20">
