@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import SearchBox from "@/components/searchBox";
 import Header from "@/components/header";
@@ -12,27 +12,41 @@ export default function Home() {
 
   return (
     <main className="bg-custom-bg">
-      <div className="flex flex-start ">
-        <div className="mt-10 ml-20 mr-20 flex flex-start">
-          <Header />
-        </div>
-        <div className="mt-10 mr-10 ml-40">
-          <SearchBox setDrugData={setDrugData} setKeyword={setKeyword} />
-        </div>
+      <div
+        className={`flex items-center justify-center flex-col gap-10 ${
+          keyword === "" ? "h-screen" : "mt-10"
+        }`}
+      >
+        <Header />
+        {keyword === "" && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center md:text-2xl text-md text-gray-500"
+          >
+            Enter a medication for more information!
+          </motion.p>
+        )}
+
+        <SearchBox setDrugData={setDrugData} setKeyword={setKeyword} />
       </div>
+
       {keyword !== "" && (
-        <motion.p 
+        <>
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="ml-20 mb-5"
-        >
-            Results for "{keyword}" ({drugData && drugData.results ? drugData.results.length : 0}).
-        </motion.p>
+            className="ml-2 md:ml-20 mt-10 mb-5 text-gray-600"
+          >
+            Results for "{keyword}" (
+            {drugData && drugData.results ? drugData.results.length : 0}).
+          </motion.p>
+          <div className="mx-2 md:mx-20">
+            <Results data={drugData} />
+          </div>
+        </>
       )}
-      <div className="ml-20 mr-20">
-        <Results data={drugData} />
-      </div>
     </main>
   );
 }

@@ -20,9 +20,9 @@ export default function Results({ data }) {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-center text-4xl text-gray-500"
+          className="text-center text-2xl text-gray-500"
         >
-          Enter a medication for more information!
+          Try Another Search!
         </motion.p>
       </div>
     );
@@ -46,13 +46,13 @@ export default function Results({ data }) {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="mt-8 mb-12 grid grid-cols-2 md:grid-cols-3 gap-8"
+        className="mt-8 mb-12 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
         {data.results.slice(0, displayMore).map((result, index) => (
           <div
             key={index}
             onClick={() => openItemPage(result)}
-            className="box-size w-full h-36 bg-blue-200 flex rounded-lg border-transparent hover:border-blue-500 border-2 hover:opacity-80 transition-all ease-linear cursor-pointer"
+            className="box-size w-full h-36 bg-blue-200 flex rounded-lg border-transparent hover:border-blue-500 border-2 hover:opacity-80 transition-all ease-linear cursor-pointer overflow-hidden py-1"
           >
             <div className="flex flex-col flex-start">
               <span className="pl-5 pt-2 pb-2 text-black font-bold text-xl">
