@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { CiPillsBottle1 } from "react-icons/ci";
+import { motion } from "framer-motion";
 
 export default function DrugFacts({ drugFacts, onClose }) {
   const {
@@ -42,7 +43,12 @@ export default function DrugFacts({ drugFacts, onClose }) {
   }, [onClose]);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full z-50  bg-gray-900 bg-opacity-75 flex justify-center items-center">
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: .5, ease: "easeOut" }}
+      className="fixed top-0 left-0 w-full h-full z-50 bg-gray-900 bg-opacity-75 flex justify-center items-center"
+    >
       <div
         ref={modalRef}
         className="rounded-lg p-10 max-w-3xl overflow-hidden bg-custom-bg"
@@ -62,7 +68,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
             Usage
             <FaRegCheckCircle color="green" size={27} className="ml-2" />
           </div>
-          <ul className="list-disc mx-10 text-2xl">
+          <ul className="list-disc mx-10 text-2xl m-4">
             {usage
               .split(".")
               .filter((item) => item.trim() !== "")
@@ -76,7 +82,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
           </div>
           <ul className="mx-10 text-2xl font-bold">
             <li
-              className="flex items-center"
+              className="flex items-center m-4"
               onClick={() => setIsGenWarnOpen(!isGenWarnOpen)}
               style={{ cursor: "pointer" }}
             >
@@ -93,7 +99,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
               </ul>
             )}
             <li
-              className="flex items-center"
+              className="flex items-center m-4"
               onClick={() => setIsAllergyWarnOpen(!isAllergyWarnOpen)}
               style={{ cursor: "pointer" }}
             >
@@ -111,7 +117,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
               </ul>
             )}
             <li
-              className="flex items-center"
+              className="flex items-center m-4"
               onClick={() => setIsPregWarnOpen(!isPregWarnOpen)}
               style={{ cursor: "pointer" }}
             >
@@ -128,7 +134,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
               </ul>
             )}
           </ul>
-          <div className="flex text-2xl font-bold">
+          <div className="flex text-2xl font-bold mt-4">
             Ingredients
             <CiPillsBottle1
               color="87C4FF"
@@ -140,7 +146,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
           </div>
           <ul className="list-disc mx-10 text-2xl font-bold">
             <li
-              className="flex items-center"
+              className="flex items-center m-4"
               onClick={() => setIsActiveOpen(!isActiveOpen)}
               style={{ cursor: "pointer" }}
             >
@@ -152,7 +158,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
               </ul>
             )}
             <li
-              className="flex items-center"
+              className="flex items-center m-4"
               onClick={() => setIsInactiveOpen(!isInactiveOpen)}
               style={{ cursor: "pointer" }}
             >
@@ -166,6 +172,6 @@ export default function DrugFacts({ drugFacts, onClose }) {
           </ul>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

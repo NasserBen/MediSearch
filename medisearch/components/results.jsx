@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import DrugFacts from "./drugFacts";
 
 export default function Results({ data }) {
@@ -9,14 +10,18 @@ export default function Results({ data }) {
     setDisplayMore(displayMore + 15);
   };
 
-  function capitalizeFirstLetter(string) {
+  function capsFirstLetter(string) {
     return string.replace(/\b\w/g, (char) => char.toUpperCase());
   }
 
   if (!data || !data.results || data.results.length === 0) {
     return (
-      <div className="mt-8">
-        <p>No drug information available.</p>
+      <div className="flex justify-center items-center mt-60">
+         <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center text-4xl text-gray-500">Enter a medication for more information!
+          </motion.p>
       </div>
     );
   }
@@ -31,33 +36,37 @@ export default function Results({ data }) {
 
   return (
     <div>
-      <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-8">
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="mt-8 mb-12 grid grid-cols-2 md:grid-cols-3 gap-8"
+      >
         {data.results.slice(0, displayMore).map((result, index) => (
           <div
             key={index}
             onClick={() => openItemPage(result)}
-            className="w-full h-36 bg-blue-200 flex rounded-lg border border-transparent hover:border-blue-500 border-2 hover:opacity-80 cursor-pointer"
+            className="box-size w-full h-36 bg-blue-200 flex rounded-lg border-transparent hover:border-blue-500 border-2 hover:opacity-80 transition-all ease-linear cursor-pointer"
           >
             <div className="flex flex-col flex-start">
               <span className="pl-5 pt-2 pb-2 text-black font-bold text-xl">
-                {capitalizeFirstLetter(
+                {capsFirstLetter(
                   result.openfda?.brand_name?.[0]?.substring(0, 50)
                 )}
                 {result.openfda?.brand_name?.[0]?.length > 50 ? "..." : ""}
               </span>
               <span className="px-5 text-sm">
                 {result.indications_and_usage?.[0]
-                  ?.replace(/•/g, "")
                   .substring(0, 170)}
                 {result.indications_and_usage?.[0]?.length > 170 ? "..." : ""}
               </span>
             </div>
           </div>
         ))}
-      </div>
+      </motion.div>
         
-      {data.results.length > displayMore && (
-        <div className="flex justify-center mt-8">
+      {data.results.length > displayMore ? (
+        <div className="flex justify-center mt-4">
           <button
             onClick={loadMoreResults}
             className="bg-primary hover:bg-secondary transition-all ease-linear text-white font-bold py-2 px-4 mb-10 rounded"
@@ -65,9 +74,13 @@ export default function Results({ data }) {
             Load More
           </button>
         </div>
+      ) : (
+        <div className="flex justify-center mb-8 text-gray-500">
+          <p>All Results Displayed.</p>
+        </div>
       )}
 
-{selectedItem && (
+      {selectedItem && (
         <DrugFacts
           drugFacts={{
             drugName: "Ibuprofen",
