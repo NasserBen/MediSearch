@@ -19,9 +19,11 @@ export default function DrugFacts({ drugFacts, onClose }) {
     pregWarnings,
     activeIngred,
     inactiveIngred,
+    directions,
   } = drugFacts;
 
   const [isGenWarnOpen, setIsGenWarnOpen] = useState(false);
+  const [isDirecOpen, setIsDirecOpen] = useState(false);
   const [isAllergyWarnOpen, setIsAllergyWarnOpen] = useState(false);
   const [isPregWarnOpen, setIsPregWarnOpen] = useState(false);
   const [isActiveOpen, setIsActiveOpen] = useState(false);
@@ -47,7 +49,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: .5, ease: "easeOut" }}
-      className="fixed top-0 left-0 w-full h-full z-50 bg-gray-900 bg-opacity-75 flex justify-center items-center"
+      className="fixed top-0 left-0 w-full h-full z-50 bg-gray-900 bg-opacity-80 flex justify-center items-center"
     >
       <div
         ref={modalRef}
@@ -68,7 +70,9 @@ export default function DrugFacts({ drugFacts, onClose }) {
             Usage
             <FaRegCheckCircle color="green" size={27} className="ml-2" />
           </div>
-          <ul className="list-disc mx-10 text-2xl m-4">
+          <br />
+          <ul className="list-disc mx-10 text-2xl">
+
             {usage
               .split(".")
               .filter((item) => item.trim() !== "")
@@ -76,65 +80,116 @@ export default function DrugFacts({ drugFacts, onClose }) {
                 <li key={index}>{item.trim()}.</li>
               ))}
           </ul>
+          {/* {directions !== "" && <></>} */}
+          <br />
+          <ul className="text-2xl">
+            {directions !== "" && (
+              <>
+                <li
+                  className="flex items-center"
+                  onClick={() => setIsDirecOpen(!isDirecOpen)}
+                  style={{ cursor: "pointer" }}
+                >
+                  Directions {isDirecOpen ? <FaChevronUp /> : <FaChevronDown />}
+                </li>
+                {isDirecOpen && (
+                  <ul className="list-disc mx-10 text-xl font-normal">
+                    {directions
+                      .split(".")
+                      .filter((item) => item.trim() !== "")
+                      .map((item, index) => (
+                        <li key={index}>{item.trim()}.</li>
+                      ))}
+                  </ul>
+                )}
+              </>
+            )}
+          </ul>
+          <br />
+
+          <br />
           <div className="flex text-2xl font-bold">
             Warnings
             <RiErrorWarningLine color="red" size={30} className="ml-2" />
           </div>
-          <ul className="mx-10 text-2xl font-bold">
-            <li
-              className="flex items-center m-4"
-              onClick={() => setIsGenWarnOpen(!isGenWarnOpen)}
-              style={{ cursor: "pointer" }}
-            >
-              General {isGenWarnOpen ? <FaChevronUp /> : <FaChevronDown />}
-            </li>
-            {isGenWarnOpen && (
-              <ul className="list-disc mx-10 text-2xl font-normal">
-                {genWarnings
-                  .split(".")
-                  .filter((item) => item.trim() !== "")
-                  .map((item, index) => (
-                    <li key={index}>{item.trim()}.</li>
-                  ))}
-              </ul>
+
+          <br />
+          <ul className="text-2xl">
+            {genWarnings !== "" && (
+              <>
+                <li
+                  className="flex items-center"
+                  onClick={() => setIsGenWarnOpen(!isGenWarnOpen)}
+                  style={{ cursor: "pointer" }}
+                >
+                  General {isGenWarnOpen ? <FaChevronUp /> : <FaChevronDown />}
+                </li>
+                {isGenWarnOpen && (
+                  <ul className="list-disc mx-10 text-xl font-normal">
+                    {genWarnings
+                      .split(".")
+                      .filter((item) => item.trim() !== "")
+                      .map((item, index) => (
+                        <li key={index}>{item.trim()}.</li>
+                      ))}
+                  </ul>
+                )}
+              </>
             )}
-            <li
-              className="flex items-center m-4"
-              onClick={() => setIsAllergyWarnOpen(!isAllergyWarnOpen)}
-              style={{ cursor: "pointer" }}
-            >
-              Allergies{" "}
-              {isAllergyWarnOpen ? <FaChevronUp /> : <FaChevronDown />}
-            </li>
-            {isAllergyWarnOpen && (
-              <ul className="list-disc mx-10 text-2xl font-normal">
-                {allergyWarnings
-                  .split(".")
-                  .filter((item) => item.trim() !== "")
-                  .map((item, index) => (
-                    <li key={index}>{item.trim()}.</li>
-                  ))}
-              </ul>
+
+            <br />
+
+            {allergyWarnings !== "" && (
+              <>
+                <li
+                  className="flex items-center"
+                  onClick={() => setIsAllergyWarnOpen(!isAllergyWarnOpen)}
+                  style={{ cursor: "pointer" }}
+                >
+                  Allergies
+                  {isAllergyWarnOpen ? <FaChevronUp /> : <FaChevronDown />}
+                </li>
+
+                {isAllergyWarnOpen && (
+                  <ul className="list-disc mx-10 text-xl font-normal">
+                    {allergyWarnings
+                      .split(".")
+                      .filter((item) => item.trim() !== "")
+                      .map((item, index) => (
+                        <li key={index}>{item.trim()}.</li>
+                      ))}
+                  </ul>
+                )}
+                <br />
+              </>
             )}
-            <li
-              className="flex items-center m-4"
-              onClick={() => setIsPregWarnOpen(!isPregWarnOpen)}
-              style={{ cursor: "pointer" }}
-            >
-              Pregnancy {isPregWarnOpen ? <FaChevronUp /> : <FaChevronDown />}
-            </li>
-            {isPregWarnOpen && (
-              <ul className="list-disc mx-10 text-2xl font-normal">
-                {pregWarnings
-                  .split(".")
-                  .filter((item) => item.trim() !== "")
-                  .map((item, index) => (
-                    <li key={index}>{item.trim()}.</li>
-                  ))}
-              </ul>
+
+            {pregWarnings !== "" && (
+              <>
+                <li
+                  className="flex items-center"
+                  onClick={() => setIsPregWarnOpen(!isPregWarnOpen)}
+                  style={{ cursor: "pointer" }}
+                >
+                  Pregnancy
+                  {isPregWarnOpen ? <FaChevronUp /> : <FaChevronDown />}
+                </li>
+                {isPregWarnOpen && (
+                  <ul className="list-disc mx-10 text-xl font-normal">
+                    {pregWarnings
+                      .split(".")
+                      .filter((item) => item.trim() !== "")
+                      .map((item, index) => (
+                        <li key={index}>{item.trim()}.</li>
+                      ))}
+                  </ul>
+                )}
+              </>
             )}
           </ul>
-          <div className="flex text-2xl font-bold mt-4">
+          <br />
+
+          <div className="flex text-2xl font-bold">
             Ingredients
             <CiPillsBottle1
               color="87C4FF"
@@ -144,32 +199,53 @@ export default function DrugFacts({ drugFacts, onClose }) {
               className="ml-1"
             />
           </div>
-          <ul className="list-disc mx-10 text-2xl font-bold">
-            <li
-              className="flex items-center m-4"
-              onClick={() => setIsActiveOpen(!isActiveOpen)}
-              style={{ cursor: "pointer" }}
-            >
-              Active {isActiveOpen ? <FaChevronUp /> : <FaChevronDown />}
-            </li>
-            {isActiveOpen && (
-              <ul className="list-disc mx-10 text-2xl font-normal">
-                <li>{activeIngred}</li>
+          <br />
+          {activeIngred === "" && inactiveIngred === "" ? (
+            <>
+              <p>No results found.</p>
+            </>
+          ) : (
+            <>
+              <ul className="text-2xl">
+                {activeIngred !== "" && (
+                  <>
+                    <li
+                      className="flex items-center"
+                      onClick={() => setIsActiveOpen(!isActiveOpen)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      Active{" "}
+                      {isActiveOpen ? <FaChevronUp /> : <FaChevronDown />}
+                    </li>
+                    {isActiveOpen && (
+                      <ul className="list-disc mx-10 text-xl font-normal">
+                        <li>{activeIngred}</li>
+                      </ul>
+                    )}
+                    <br />
+                  </>
+                )}
+
+                {inactiveIngred !== "" && (
+                  <>
+                    <li
+                      className="flex items-center"
+                      onClick={() => setIsInactiveOpen(!isInactiveOpen)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      Inactive
+                      {isInactiveOpen ? <FaChevronUp /> : <FaChevronDown />}
+                    </li>
+                    {isInactiveOpen && (
+                      <ul className="list-disc mx-10 text-xl font-normal">
+                        <li>{inactiveIngred}</li>
+                      </ul>
+                    )}
+                  </>
+                )}
               </ul>
-            )}
-            <li
-              className="flex items-center m-4"
-              onClick={() => setIsInactiveOpen(!isInactiveOpen)}
-              style={{ cursor: "pointer" }}
-            >
-              Inactive {isInactiveOpen ? <FaChevronUp /> : <FaChevronDown />}
-            </li>
-            {isInactiveOpen && (
-              <ul className="list-disc mx-10 text-2xl font-normal">
-                <li>{inactiveIngred}</li>
-              </ul>
-            )}
-          </ul>
+            </>
+          )}
         </div>
       </div>
     </motion.div>
