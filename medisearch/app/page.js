@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import SearchBox from "@/components/SearchBox";
-import Header from "@/components/Header";
-import Results from "@/components/Results";
+import SearchBox from "@/components/searchBox";
+import Header from "@/components/header";
+import Results from "@/components/results";
 
 export default function Home() {
   const [drugData, setDrugData] = useState(null);

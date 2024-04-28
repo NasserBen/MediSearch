@@ -12,8 +12,7 @@ export default function SearchBox({ setDrugData }) {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const apiUrl = `https://api.fda.gov/drug/label.json?search=openfda.substance_name:"ibuprofen"&limit=20
-      `;
+      const apiUrl = `https://api.fda.gov/drug/label.json?search=openfda.substance_name:"${query}"&limit=6`;
 
       const response = await fetch(apiUrl);
       if (!response.ok) {
@@ -34,7 +33,7 @@ export default function SearchBox({ setDrugData }) {
   return (
     <form onSubmit={handleSearch} className="max-w-md mx-auto">
       <label
-        for="default-search"
+        htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only"
       >
         Search
@@ -42,7 +41,6 @@ export default function SearchBox({ setDrugData }) {
       <div className="relative">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <IoSearchSharp className="w-5 h-5 text-gray-900 dark:text-gray-400" />{" "}
-          {/* React Icon used */}
         </div>
         <input
           type="search"
@@ -51,7 +49,7 @@ export default function SearchBox({ setDrugData }) {
           placeholder="Search.."
           required
           value={query}
-          onChange={handleInputChange} // Handling input change
+          onChange={handleInputChange}
         />
       </div>
     </form>
