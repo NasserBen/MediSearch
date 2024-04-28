@@ -12,7 +12,7 @@ export default function SearchBox({ setDrugData }) {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const apiUrl = `https://api.fda.gov/drug/label.json?search=openfda.substance_name:"${query}"&limit=6`;
+      const apiUrl = `https://api.fda.gov/drug/label.json?search=openfda.substance_name:"${query}" OR openfda.brand_name:"${query}"&limit=100`;
 
       const response = await fetch(apiUrl);
       if (!response.ok) {
