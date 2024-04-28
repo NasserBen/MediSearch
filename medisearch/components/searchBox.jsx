@@ -12,8 +12,7 @@ export default function SearchBox({ setDrugData }) {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const apiUrl = `https://api.fda.gov/drug/label.json?search=openfda.substance_name:"ibuprofen"&limit=20
-      `;
+      const apiUrl = `https://api.fda.gov/drug/label.json?search=openfda.substance_name:"${query}"&limit=20`;
 
       const response = await fetch(apiUrl);
       if (!response.ok) {
@@ -34,7 +33,7 @@ export default function SearchBox({ setDrugData }) {
   return (
     <form onSubmit={handleSearch} className="max-w-md mx-auto">
       <label
-        for="default-search"
+        htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only"
       >
         Search
