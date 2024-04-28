@@ -1,8 +1,21 @@
+import SearchBox from "@/components/searchBox";
+import Header from "@/components/header";
+
 import DrugFacts from "@/components/drugFacts";
 
 export default function Home() {
   return (
-    <DrugFacts
+    <div>
+        <div className="flex">
+            <div className="mt-10 ml-20 mr-20 flex flex-start">
+                <Header />
+            </div>
+            <div className="mt-10 mr-10 ml-40">
+                <SearchBox />
+            </div>
+        </div>
+        
+        <DrugFacts
         drugFacts={{
         drugName: "Ibuprofen",
         usage: "Ibuprofen tablets are indicated for relief of the signs and symptoms of rheumatoid arthritis and osteoarthritis. Ibuprofen tablets are indicated for relief of mild to moderate pain. Ibuprofen tablets are also indicated for the treatment of primary dysmenorrhea. Controlled clinical trials to establish the safety and effectiveness of ibuprofen tablets in children have not been conducted.",
@@ -12,5 +25,7 @@ export default function Home() {
         activeIngred: "Ibuprofen 400 mg, 600 mg, and 800 mg tablets",
         inactiveIngred: "colloidal silicon dioxide, croscarmellose sodium, microcrystalline cellulose, polyethylene glycol, polyvinyl alcohol-part. hydrolyzed, povidone, stearic acid, talc and titanium dioxide.",
       }}/>
+    </div>
+    
   );
 }
