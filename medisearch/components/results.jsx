@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import DrugFacts from "./drugFacts";
@@ -18,11 +17,13 @@ export default function Results({ data }) {
   if (!data || !data.results || data.results.length === 0) {
     return (
       <div className="flex justify-center items-center mt-60">
-         <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center text-4xl text-gray-500">Enter a medication for more information!
-          </motion.p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center text-4xl text-gray-500"
+        >
+          Enter a medication for more information!
+        </motion.p>
       </div>
     );
   }
@@ -35,11 +36,13 @@ export default function Results({ data }) {
     setSelectedItem(null);
   };
 
-  console.log(data);
+  function capsFirstLetter(string) {
+    return string.replace(/\b\w/g, (char) => char.toUpperCase());
+  }
 
   return (
     <div>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
@@ -59,36 +62,18 @@ export default function Results({ data }) {
                 {result.openfda?.brand_name?.[0]?.length > 50 ? "..." : ""}
               </span>
               <span className="px-5 text-sm">
-                {result.indications_and_usage?.[0]
-                  .substring(0, 170)}
+                {result.indications_and_usage?.[0].substring(0, 170)}
                 {result.indications_and_usage?.[0]?.length > 170 ? "..." : ""}
               </span>
             </div>
           </div>
         ))}
       </motion.div>
-        
-      {data.results.length > displayMore ? (
-        <div className="flex justify-center mt-4">
-          <button
-            onClick={loadMoreResults}
-            className="bg-primary hover:bg-secondary transition-all ease-linear text-white font-bold py-2 px-4 mb-10 rounded"
-          >
-            Load More
-          </button>
-        </div>
-      ) : (
-        <div className="flex justify-center mb-8 text-gray-500">
-          <p>All Results Displayed.</p>
-        </div>
-      )}
 
       {selectedItem && (
         <DrugFacts
           drugFacts={{
-            drugName: capitalizeFirstLetter(
-              selectedItem.openfda?.brand_name?.[0]
-            ),
+            drugName: capsFirstLetter(selectedItem.openfda?.brand_name?.[0]),
             usage: selectedItem.indications_and_usage?.[0] || "",
             directions: selectedItem.dosage_and_administration?.[0] || "",
             genWarnings:
@@ -112,14 +97,18 @@ export default function Results({ data }) {
         />
       )}
 
-      {data.results.length > displayMore && (
-        <div className="flex justify-center mt-8">
+      {data.results.length > displayMore ? (
+        <div className="flex justify-center mt-4">
           <button
             onClick={loadMoreResults}
             className="bg-primary hover:bg-secondary transition-all ease-linear text-white font-bold py-2 px-4 mb-10 rounded"
           >
             Load More
           </button>
+        </div>
+      ) : (
+        <div className="flex justify-center mb-8 text-gray-500">
+          <p>All Results Displayed.</p>
         </div>
       )}
     </div>
