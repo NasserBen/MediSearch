@@ -4,12 +4,12 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "MediSearch",
-  description: "Search for your health needs!",
+  title: 'MediSearch',
+  description: 'Search for your health needs!',
   icons:{
-    icon:['/faviconTingz/favicon.ico?v=4'],
-    apple:['/faviconTingz/apple-touch-icon.png'],
-    chrome:['/faviconTingz/android-chrome-192x192.png'],
+    icon:['/faviconPackage/favicon.ico?v=4'],
+    apple:['/faviconPackage/apple-touch-icon.png'],
+    chrome:['/faviconPackage/android-chrome-192x192.png'],
   }
 };
 

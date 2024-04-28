@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { CiPillsBottle1 } from "react-icons/ci";
+import { motion } from "framer-motion";
 
 export default function DrugFacts({ drugFacts, onClose }) {
   const {
@@ -44,7 +45,12 @@ export default function DrugFacts({ drugFacts, onClose }) {
   }, [onClose]);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full z-50  bg-gray-900 bg-opacity-80 flex justify-center items-center">
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: .5, ease: "easeOut" }}
+      className="fixed top-0 left-0 w-full h-full z-50 bg-gray-900 bg-opacity-80 flex justify-center items-center"
+    >
       <div
         ref={modalRef}
         className="rounded-lg p-10 max-w-3xl overflow-hidden bg-custom-bg"
@@ -66,6 +72,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
           </div>
           <br />
           <ul className="list-disc mx-10 text-2xl">
+
             {usage
               .split(".")
               .filter((item) => item.trim() !== "")
@@ -105,6 +112,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
             Warnings
             <RiErrorWarningLine color="red" size={30} className="ml-2" />
           </div>
+
           <br />
           <ul className="text-2xl">
             {genWarnings !== "" && (
@@ -240,6 +248,6 @@ export default function DrugFacts({ drugFacts, onClose }) {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
