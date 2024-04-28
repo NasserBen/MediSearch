@@ -12,12 +12,12 @@ export default function SearchBox({ setDrugData, setKeyword }) {
   const handleSearch = async (e) => {
     e.preventDefault();
     const trimmedQuery = query.trim();
-    
+
     if (trimmedQuery !== "") {
       setKeyword(trimmedQuery);
       try {
         const apiUrl = `https://api.fda.gov/drug/label.json?search=openfda.substance_name:"${trimmedQuery}" OR openfda.brand_name:"${trimmedQuery}"&limit=100`;
-  
+
         const response = await fetch(apiUrl);
         if (!response.ok) {
           if (response.status === 404) {
@@ -34,24 +34,20 @@ export default function SearchBox({ setDrugData, setKeyword }) {
       }
     }
   };
-  
 
   return (
-    <form onSubmit={handleSearch} className="max-w-md mx-auto">
-      <label
-        htmlFor="default-search"
-        className="mb-2 text-sm font-medium text-gray-900 sr-only"
-      >
+    <form onSubmit={handleSearch} className="flex items-center justify-center">
+      <label htmlFor="default-search" className="sr-only">
         Search
       </label>
       <div className="relative">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-          <IoSearchSharp className="w-5 h-5 text-gray-400" />{" "}
+        <div className="absolute inset-y-0 left-2 flex items-center">
+          <IoSearchSharp className="w-5 h-5 text-gray-400" />
         </div>
         <input
           type="search"
           id="default-search"
-          className="px-16 py-3 text-sm text-black-500 rounded-full bg-gray-50 shadow-lg"
+          className="pl-10 pr-4 py-3 text-sm text-black rounded-full focus:outline-none focus:ring-2 focus:ring-primary shadow-lg w-full md:w-[300px]"
           placeholder="Search..."
           required
           value={query}

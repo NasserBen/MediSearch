@@ -10,9 +10,9 @@ export default function Header() {
         alt="logo"
         width={70}
         height={70}
-        className="mb-12 ml-5 rotate-logo"
+        className="rotate-logo w-[30px] md:w-[70px] md:h-[70px]"
       />
-      <div className="flex items-center justify-center font-bold text-6xl mb-10 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+      <div className="flex items-center justify-center font-bold md:text-6xl text-3xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
         MediSearch
       </div>
     </div>

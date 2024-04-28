@@ -8,7 +8,6 @@ import {
 } from "react-icons/fa";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { CiPillsBottle1 } from "react-icons/ci";
-import { motion } from "framer-motion";
 
 export default function DrugFacts({ drugFacts, onClose }) {
   const {
@@ -45,18 +44,10 @@ export default function DrugFacts({ drugFacts, onClose }) {
   }, [onClose]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: .5, ease: "easeOut" }}
-      className="fixed top-0 left-0 w-full h-full z-50 bg-gray-900 bg-opacity-80 flex justify-center items-center"
-    >
-      <div
-        ref={modalRef}
-        className="rounded-lg p-10 max-w-3xl overflow-hidden bg-custom-bg"
-      >
+    <div className="fixed top-0 left-0 w-full h-full z-50  bg-gray-900 bg-opacity-80 flex justify-center items-center">
+      <div ref={modalRef} className="rounded-lg p-10 max-w-3xl bg-custom-bg">
         <div className="flex justify-between items-center">
-          <div className="text-4xl font-bold">{drugName}</div>
+          <div className="text-2xl md:text-4xl font-bold">{drugName}</div>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 focus:outline-none"
@@ -65,14 +56,13 @@ export default function DrugFacts({ drugFacts, onClose }) {
           </button>
         </div>
         <br />
-        <div className=" h-[700px] overflow-y-auto">
-          <div className="flex items-center text-2xl font-bold">
+        <div className="h-[700px] overflow-y-auto">
+          <div className="flex items-center text-xl md:text-2xl font-bold">
             Usage
             <FaRegCheckCircle color="green" size={27} className="ml-2" />
           </div>
           <br />
-          <ul className="list-disc mx-10 text-2xl">
-
+          <ul className="list-disc md:mx-10 text-sm md:text-2xl">
             {usage
               .split(".")
               .filter((item) => item.trim() !== "")
@@ -82,7 +72,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
           </ul>
           {/* {directions !== "" && <></>} */}
           <br />
-          <ul className="text-2xl">
+          <ul className="text-lg md:text-2xl">
             {directions !== "" && (
               <>
                 <li
@@ -93,7 +83,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
                   Directions {isDirecOpen ? <FaChevronUp /> : <FaChevronDown />}
                 </li>
                 {isDirecOpen && (
-                  <ul className="list-disc mx-10 text-xl font-normal">
+                  <ul className="list-disc mx-4 md:mx-10 text-sm md:text-xl font-normal">
                     {directions
                       .split(".")
                       .filter((item) => item.trim() !== "")
@@ -108,13 +98,12 @@ export default function DrugFacts({ drugFacts, onClose }) {
           <br />
 
           <br />
-          <div className="flex text-2xl font-bold">
+          <div className="flex text-xl md:text-2xl font-bold">
             Warnings
             <RiErrorWarningLine color="red" size={30} className="ml-2" />
           </div>
-
           <br />
-          <ul className="text-2xl">
+          <ul className="text-lg md:text-2xl">
             {genWarnings !== "" && (
               <>
                 <li
@@ -125,7 +114,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
                   General {isGenWarnOpen ? <FaChevronUp /> : <FaChevronDown />}
                 </li>
                 {isGenWarnOpen && (
-                  <ul className="list-disc mx-10 text-xl font-normal">
+                  <ul className="list-disc mx-4 md:mx-10 text-sm md:text-xl font-normal">
                     {genWarnings
                       .split(".")
                       .filter((item) => item.trim() !== "")
@@ -151,7 +140,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
                 </li>
 
                 {isAllergyWarnOpen && (
-                  <ul className="list-disc mx-10 text-xl font-normal">
+                  <ul className="list-disc mx-4 md:mx-10 text-sm md:text-xl font-normal">
                     {allergyWarnings
                       .split(".")
                       .filter((item) => item.trim() !== "")
@@ -175,7 +164,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
                   {isPregWarnOpen ? <FaChevronUp /> : <FaChevronDown />}
                 </li>
                 {isPregWarnOpen && (
-                  <ul className="list-disc mx-10 text-xl font-normal">
+                  <ul className="list-disc mx-4 md:mx-10 text-sm md:text-xl font-normal">
                     {pregWarnings
                       .split(".")
                       .filter((item) => item.trim() !== "")
@@ -206,7 +195,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
             </>
           ) : (
             <>
-              <ul className="text-2xl">
+              <ul className="text-lg md:text-2xl">
                 {activeIngred !== "" && (
                   <>
                     <li
@@ -218,7 +207,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
                       {isActiveOpen ? <FaChevronUp /> : <FaChevronDown />}
                     </li>
                     {isActiveOpen && (
-                      <ul className="list-disc mx-10 text-xl font-normal">
+                      <ul className="list-disc mx-4 md:mx-10 text-sm md:text-xl font-normal">
                         <li>{activeIngred}</li>
                       </ul>
                     )}
@@ -237,7 +226,7 @@ export default function DrugFacts({ drugFacts, onClose }) {
                       {isInactiveOpen ? <FaChevronUp /> : <FaChevronDown />}
                     </li>
                     {isInactiveOpen && (
-                      <ul className="list-disc mx-10 text-xl font-normal">
+                      <ul className="list-disc mx-4 md:mx-10 text-sm md:text-xl font-normal">
                         <li>{inactiveIngred}</li>
                       </ul>
                     )}
@@ -248,6 +237,6 @@ export default function DrugFacts({ drugFacts, onClose }) {
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
