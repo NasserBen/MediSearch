@@ -3,6 +3,11 @@ import DrugFacts from "./drugFacts";
 
 export default function Results({ data }) {
   const [selectedItem, setSelectedItem] = useState(null);
+  const [displayMore, setDisplayMore] = useState(15);
+
+  const loadMoreResults = () => {
+    setDisplayMore(displayMore + 15);
+  };
 
   function capitalizeFirstLetter(string) {
     return string.replace(/\b\w/g, (char) => char.toUpperCase());
@@ -29,7 +34,7 @@ export default function Results({ data }) {
   return (
     <div>
       <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-8">
-        {data.results.map((result, index) => (
+        {data.results.slice(0, displayMore).map((result, index) => (
           <div
             key={index}
             onClick={() => openItemPage(result)}
@@ -52,6 +57,17 @@ export default function Results({ data }) {
           </div>
         ))}
       </div>
+
+      {data.results.length > displayMore && (
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={loadMoreResults}
+            className="bg-primary hover:bg-secondary transition-all ease-linear text-white font-bold py-2 px-4 mb-10 rounded"
+          >
+            Load More
+          </button>
+        </div>
+      )}
 
       {selectedItem && (
         <DrugFacts
