@@ -36,24 +36,35 @@ export default function SearchBox({ setDrugData, setKeyword }) {
   };
 
   return (
-    <form onSubmit={handleSearch} className="flex items-center justify-center">
-      <label htmlFor="default-search" className="sr-only">
-        Search
-      </label>
-      <div className="relative">
-        <div className="absolute inset-y-0 left-2 flex items-center">
-          <IoSearchSharp className="w-5 h-5 text-gray-400" />
+    <search>
+      <form
+        onSubmit={handleSearch}
+        className="flex items-center justify-center flex-col gap-3"
+      >
+        <label htmlFor="default-search" className="sr-only">
+          Search
+        </label>
+        <div className="relative">
+          <div className="absolute inset-y-0 left-2 flex items-center">
+            <IoSearchSharp className="w-5 h-5 text-gray-400" />
+          </div>
+          <input
+            type="search"
+            id="default-search"
+            className="pl-10 pr-4 py-3 text-sm text-black rounded-full focus:outline-none focus:ring-2 focus:ring-primary shadow-lg w-full md:w-[300px]"
+            placeholder="Search..."
+            required
+            value={query}
+            onChange={handleInputChange}
+          />
         </div>
-        <input
-          type="search"
-          id="default-search"
-          className="pl-10 pr-4 py-3 text-sm text-black rounded-full focus:outline-none focus:ring-2 focus:ring-primary shadow-lg w-full md:w-[300px]"
-          placeholder="Search..."
-          required
-          value={query}
-          onChange={handleInputChange}
-        />
-      </div>
-    </form>
+        <button
+          onClick={handleSearch}
+          className="bg-primary hover:bg-secondary transition-all ease-linear text-white font-bold py-2 px-4 rounded md:hidden"
+        >
+          Search
+        </button>
+      </form>
+    </search>
   );
 }
