@@ -7,6 +7,7 @@ import Results from "@/components/results";
 
 export default function Home() {
   const [drugData, setDrugData] = useState(null);
+  const [keyword, setKeyword] = useState("");
   return (
       <main className="bg-custom-bg">
             <div className="flex flex-start ">
@@ -14,10 +15,10 @@ export default function Home() {
                     <Header />
                 </div>
                 <div className="mt-10 mr-10 ml-40">
-                    <SearchBox setDrugData={setDrugData} />
+                    <SearchBox setDrugData={setDrugData} setKeyword={setKeyword}/>
                 </div>
             </div> 
-            <p className="ml-20 mb-5">Results for ... WIP</p>
+            <p className="ml-20 mb-5">Results for "{keyword}" </p>
             <div className="ml-20 mr-20">
                 {<Results data={drugData} />}
             </div>

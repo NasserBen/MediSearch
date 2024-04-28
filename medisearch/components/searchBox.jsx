@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 
-export default function SearchBox({ setDrugData }) {
+export default function SearchBox({ setDrugData, setKeyword }) {
   const [query, setQuery] = useState("");
 
   const handleInputChange = (event) => {
@@ -11,6 +11,7 @@ export default function SearchBox({ setDrugData }) {
 
   const handleSearch = async (e) => {
     e.preventDefault();
+    setKeyword(query);
     try {
       const apiUrl = `https://api.fda.gov/drug/label.json?search=openfda.substance_name:"${query}" OR openfda.brand_name:"${query}"&limit=100`;
 
